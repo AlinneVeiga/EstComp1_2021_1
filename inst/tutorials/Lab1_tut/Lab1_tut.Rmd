@@ -1,0 +1,356 @@
+---
+title: "Tutorial - Lab1"
+output: 
+  learnr::tutorial:
+    allow_skip: true
+    progressive: false
+    highlight: tango
+runtime: shiny_prerendered
+description: >
+  Lab 1
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = T)
+
+knitr::opts_chunk$set(echo = TRUE)
+tutorial_options(exercise.eval = FALSE)
+```
+
+
+## Usando $R$ como calculadora 
+
+Você pode modificar cada linha de código e depois aperte em `Run code`:
+
+Responda: *Qual o resultado a seguir? Qual o papel dos parênteses? O que aconteceria se não tivéssemos os parênteses?* (tente com e sem.) 
+
+```{r a, exercise = TRUE, exercise.eval = FALSE}
+(2-3)*3
+```
+
+Vamos agora criar um objeto que receberá o resultado da equação $(2-3)\times 3$. Esse objeto é um escalar. Se quisermos ter certeza disto, podemos veriricar a estrutura desse objeto com o comando `str()`:
+
+```{r b, exercise = TRUE, exercise.eval = FALSE}
+a <- (2-3)*3
+a
+
+str(a)
+```
+
+Como `a` é um objeto, podemos utilizá-lo de diversas formas.  O que cada código faz? *Qual o papel do ";" na última linha de comando digitada?*
+
+```{r c,  exercise = TRUE, exercise.eval = FALSE}
+a <- (2-3)*3
+
+b <- -2 * a
+print(b)
+
+c <- a / b
+c
+
+d <- (a*c)/b; d
+
+# criamos alguns objetos, podemos verificar a lista deles:
+ls()
+```
+
+
+## Mais operações
+
+No $R$, já há uma série de funções matemáticas básicas: `sin()`, `cos()` , `tan()` , `exp()` , `log()` , `sqrt()`. Verifique o resultado de cada equação abaixo:
+
+```{r d,  exercise = TRUE ,  exercise.eval = FALSE}
+pi>3 
+
+pi
+
+sin(pi/6)
+
+floor(pi)
+
+ceiling(pi)
+```
+
+## Operações Lógicas
+
+Rode os códigos abaixo e **decifre** o que aconteceu.
+
+```{r e,  exercise = TRUE ,  exercise.eval = FALSE}
+4>3 & 5<1 | 2>1 
+
+4>3 & 5<1 | 1==0
+```
+
+*O que cada uma dessas expressões faz?* Se você estiver com dúvidas, sugiro que quebre cada uma delas em pedacinhos, por exemplo
+```{r, eval=FALSE}
+4>3
+5<1
+4>3 & 5<1
+2>1
+#etc...
+```
+
+Você pode alterar `|`  por `&`  para ver o que acontece. 
+
+ Vamos utilizar os operadores lógicos e os operadores relacionais:
+```{r }  
+#Criar uma sequencia de 1 a 10
+x <- 1:10
+x 
+```
+Vamos verificar qual desses valores possui resto zero quando dividido por 2
+
+```{r }  
+x%%2 == 0
+```
+
+Vamos criar uma variável `y` que contém apenas os valores pares:
+```{r }  
+(y <- which(x%%2 == 0))
+```
+
+Verificação simples:
+```{r }  
+
+4==5 #igual
+
+4!=5 #diferente
+
+9>=7|1!=0
+
+9>=7||1!=0
+
+2 * 2 == 4 
+
+sqrt(2) * sqrt(2) <= 2
+
+x <- 0
+
+(x==0) | (sin(1/x)==0)
+```
+
+*O que significa `NaN` mesmo!?* Veja suas notas de aula;
+
+Quando usamos `||` o R avalia, logicamente elementos dos vetores.:
+
+```{r , eval=F}
+(X > Y)
+
+(X + Y == 20)
+
+(X > Y) | (X + Y == 20)
+
+(X > Y) || (X + Y == 20)
+
+(X + Y == 20) ||(X > Y)
+
+(X > Y) & (X + Y == 20)
+
+(X > Y) && (X + Y == 20)
+
+(X + Y == 20) && (X > Y)
+```
+
+Digite cada um dos comandos acima aqui e veja o que acontece:
+
+```{r g,  exercise = TRUE ,  exercise.eval = FALSE}
+X <- 5:10
+Y <- c(4,9,3,10,8,7)
+
+
+
+```
+
+
+Considere que temos uma sequência abaixo:
+```{r }
+estoque <- c(88, 90, 93, 95, 99, 99, 101, 101, 103)
+
+#Se quisermos ver quais são maiores que 100 utilizando operador lógico
+estoque > 100
+
+#Se quisermos ver quais são maiores do que 100 - temos a ordem 
+which(estoque >100)
+
+#Se quisermos ver quantos são maiores do que 100
+sum(estoque >100)
+
+# E qual o tamanho do objeto estoque 
+length(estoque )
+```
+
+
+## Missing Data - Dados Faltantes
+
+Algumas observações, por uma razão ou outra, podem estar faltando. Dependendo do tipo de análise que faremos, esse *missing* pode ser ignorado. No R o missing recebe valor `NA`. Também podemos perguntar ao R se uma dada observação é faltante:
+
+```{r }
+f <- NA
+is.na(f)
+
+# entraremos uma sequencia de tres observações
+f <- c(11, NA, 13)
+is.na(f)
+```
+*O que acontece no segundo `is.na(f)` ?* 
+
+Como o R lida com o `NA`?  
+```{r }
+f <- NA
+
+mean(f)
+
+mean(f, na.rm=TRUE)
+```
+**Procure o help do `mean` e verifique a opção `na.rm` **
+
+Há um segundo tipo de missing que é produzido por computações numéricas que é o `NaN`
+```{r }
+
+0/0
+
+Inf-Inf
+
+is.nan(Inf-Inf)
+```
+
+## Exercícios
+
+### Exercício 1. 
+
+Compare a diferença entre 2021 e o ano que você ingressou na ENCE e divida isto pela diferença entre 2021 e o ano do seu nascimento. Multiplique isso por 100 e responda: Qual o percentual da sua vida que você se dedicou à ENCE? Use os parênteses quando necessário.
+```{r ex1, exercise = TRUE}
+    
+```
+```{r ex1-solution}
+#No meu caso
+(2021-2014)/(2021-1976)*100
+```
+ 
+
+### Exercício  2. 
+
+Repita o número 1 criando diferentes objetos (variáveis) e dando nomes para cada um deles. Dê qualquer nome para cada variável, mas os nomes devem começar com uma letra. Apresente seu código.
+ 
+```{r ex2, exercise = TRUE}
+    
+```
+```{r ex2-solution}
+#No meu caso
+entrei<- 2014
+nasci<-1976
+hoje<-2021
+numerador<-(hoje-entrei)
+denominador<-(hoje-nasci)
+
+#numerador/denominador*100
+numerador/denominador*100
+```
+  
+
+### Exercício 3. 
+
+Calcule a soma de 4, 5, 8 e 11.
+```{r ex3, exercise = TRUE}
+    
+```
+```{r ex3-solution}
+soma <- 4 + 5 + 8 + 11
+soma
+```
+  
+
+### Exercício 4. 
+
+Qual a parte inteira da divisão de 17 por 5? E o resto? Apresente o código.
+```{r ex4, exercise = TRUE}
+    
+```
+```{r ex4-solution}
+17%/%5
+```
+ 
+
+
+### Exercício 5. 
+
+Supondo que `x<-2`, escreva um comando de atribuição que calcule a seguinte expressão $3x^3+2x^2+6x+1$   
+```{r ex5, exercise = TRUE}
+    
+```
+```{r ex5-solution,exercise.reveal_solution = FALSE}
+x<-2
+3*x^3+2*x^2+6*x+1
+```
+ 
+
+### Exercício  6. 
+
+Crie uma sequência de um a quinze e selecione apenas os ímpares com a função `which`.
+```{r ex6, exercise = TRUE}
+    
+```
+```{r ex6-solution,exercise.reveal_solution = FALSE}
+x <- 1:15
+which(x%%2 != 0)
+```
+   
+```{r ex6-hint}
+which()
+
+4%%2
+```
+   
+
+### Exercício  7. 
+
+Calcule: $4^3 + 3^{2+1}$
+```{r ex7, exercise = TRUE}
+    
+```
+```{r ex7-solution,exercise.reveal_solution = FALSE}
+4^3 + 3^(2+1)
+```
+  
+
+### Exercício  8. 
+
+Considere que seu trajeto casa-ence varie bastante. Você registrou o tempo e observou o seguinte: 47, 46, 60, 64, 62, 45, 62. Entre com esses dados  e  escreva o código para informar: a)quantas vezes sua viagem levou 60 minutos ou mais? b) qual a soma do tempo gasto nesses sete dias? *Dica: use a função `c(...)` , veja acima ou procure no help!*
+```{r ex8, exercise = TRUE}
+    
+```
+```{r ex8-solution, echo=F}
+trajeto <- c(47, 46, 60, 64, 62, 45, 62)
+sum(trajeto>59)
+sum(trajeto)
+```
+
+  
+
+### Exercício  9.
+
+Com o conhecimento adiquirido nessa sessão, calcule $\sum_{j=1}^{n}r^j$ supondo que $r=1.08$ e temos dois valores para `n`: $n = 10$ e $n = 20$. Dica: crie os vetores que variam de 1 até `n`. Para o primeiro caso temos como resposta:
+```{r ex9, exercise = TRUE ,  exercise.reveal_solution = FALSE}
+    
+```
+
+```{r ex9-solution, exercise.reveal_solution = FALSE}
+n <- c(1:10)
+r <- 1.08
+r.j <- r^n
+sum(r.j)
+```
+
+```{r ex9-hint-1}
+c(1:5)
+```
+
+```{r ex9-hint-2}
+a^b
+```
+
+```{r ex9-hint-3}
+sum()
+```
+
