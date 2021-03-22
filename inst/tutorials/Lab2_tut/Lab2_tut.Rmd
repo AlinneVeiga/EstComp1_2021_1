@@ -7,15 +7,15 @@ output:
     highlight: tango
 runtime: shiny_prerendered
 description: >
-  Lab 1
+  Lab 2
 ---
 
 ```{r setup, include=FALSE}
 library(learnr)
+knitr::opts_chunk$set(echo = T)
 knitr::opts_chunk$set(echo = TRUE, eval=FALSE)
 tutorial_options(exercise.eval = FALSE)
 ```
-
 
 ## Vetores
 
