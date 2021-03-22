@@ -276,7 +276,7 @@ Considerando o vetor `P<-1:100`, calcule a média de `P` e calcule a média de t
     
 ```
 
-```{r ex9-hint-1}
+```{r ex9-hint-1, eval=F}
 mean()
 ```
 
