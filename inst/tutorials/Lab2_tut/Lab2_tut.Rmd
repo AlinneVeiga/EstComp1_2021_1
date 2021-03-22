@@ -12,7 +12,7 @@ description: >
 
 ```{r setup, include=FALSE}
 library(learnr)
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, eval=FALSE)
 tutorial_options(exercise.eval = FALSE)
 ```
 
@@ -280,7 +280,7 @@ Considerando o vetor `P<-1:100`, calcule a média de `P` e calcule a média de t
 mean()
 ```
 
-```{r ex9-hint-2}
+```{r ex9-hint-2, eval=F}
 which(P%%2==0)
 ```
 
@@ -299,15 +299,15 @@ Considere o vetor `V <- sample(20,40,replace=TRUE)`. Forneça os códigos que de
     
 ```
 
-```{r ex10-hint-1}
+```{r ex10-hint-1, eval=F}
 sum()
 ```
 
-```{r ex10-hint-2}
+```{r ex10-hint-2, eval=F}
 prod()
 ```
 
-```{r ex10-hint-3}
+```{r ex10-hint-3, eval=F}
 unique()
 ```
 

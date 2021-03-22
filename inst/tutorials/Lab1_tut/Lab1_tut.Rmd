@@ -14,7 +14,7 @@ description: >
 library(learnr)
 knitr::opts_chunk$set(echo = T)
 
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, eval=FALSE)
 tutorial_options(exercise.eval = FALSE)
 ```
 
