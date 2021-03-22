@@ -12,8 +12,6 @@ description: >
 
 ```{r setup, include=FALSE}
 library(learnr)
-knitr::opts_chunk$set(echo = T)
-
 knitr::opts_chunk$set(echo = TRUE)
 tutorial_options(exercise.eval = FALSE)
 ```
@@ -103,19 +101,18 @@ diag(matriz.x)
 
 Observe os seguintes casos - verifique as dimensões.
 
-**Caso 1**
+**Caso 1**: insira o comando `a%*%b` e verifique o resultado.
 ```{r i, exercise = TRUE, exercise.eval = FALSE}
 (a <- matrix(1,nrow=2,ncol=2))
 (b <- matrix(3,nrow=3,ncol=3))
 
-a%*%b
 ``` 
-**Caso 2**
+**Caso 2** insira o comando `a%*%b` e verifique o resultado.
 ```{r j, exercise = TRUE, exercise.eval = FALSE}
 (a <- matrix(1,nrow=2,ncol=3))
 (b <- matrix(3,nrow=3,ncol=2))
 
-a%*%b
+ 
 ``` 
 *O que acontece com os casos 1 e 2? O que você pode fazer para resolver? *
 
