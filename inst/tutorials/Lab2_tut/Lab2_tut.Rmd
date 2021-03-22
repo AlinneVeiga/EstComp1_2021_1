@@ -1,0 +1,322 @@
+---
+title: "Tutorial - Lab2"
+output: 
+  learnr::tutorial:
+    allow_skip: true
+    progressive: false
+    highlight: tango
+runtime: shiny_prerendered
+description: >
+  Lab 1
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = T)
+
+knitr::opts_chunk$set(echo = TRUE)
+tutorial_options(exercise.eval = FALSE)
+```
+
+
+## Vetores
+
+Vamos começar com o tipo mais básico de estrutura de dados que o $R$ comporta como objeto: o vetor. 
+
+O comando geral utilizado para criação de vetores é `c(elementos do vetor separados por vírgulas)` - mas essa não é a única maneira. Podemos também criar vetores usando o comando `:`
+
+```{r a, exercise = TRUE, exercise.eval = FALSE}
+z <- 0:9; z
+c (3 ,7 ,2 ,12)
+c("Luiz","Camila","Rafael") 
+
+10:30
+30:10 
+```
+
+
+*Explique: o que é feito nas próximas linhas de comandos?* Modifique para entender.
+
+```{r b, exercise = TRUE, exercise.eval = FALSE}
+vet.b <- seq(-1,1, len=20)
+no.intervalo<- ((-0.5 <= vet.b) & (vet.b <=0.5))
+
+sum(no.intervalo)
+
+length(vet.b)
+
+vet.d <- round(abs(vet.b),2)
+vet.e <- unique(vet.d)
+
+length(vet.e)
+vet.b>vet.e
+```
+ 
+```{r d, echo = FALSE}
+question("`vet.b` e  `vet.d` têm o mesmo tamanho?",
+         answer("Sim."),
+         answer("Não.", correct = TRUE))
+```
+
+ 
+```{r e, echo = FALSE}
+question_text("O que você imagina que o R faz na comparação acima?",
+          answer(NULL, correct = TRUE),
+  allow_retry = FALSE,
+  try_again_button = "Refazer resposta",
+  incorrect = "Ok"
+)
+```
+
+Crie um vetor com texto com o seu nome (eu coloquei o meu):
+```{r f, exercise = TRUE, exercise.eval = FALSE}
+nome <- "Alinne"
+is.vector(nome)
+is.numeric(nome) #Claro que não é!
+is.character(nome)
+```
+
+
+## Matrizes 
+
+*Compare e explique:*
+```{r g, exercise = TRUE, exercise.eval = FALSE}
+vec.A <- 1:10
+#Qual a diferença entre os seguintes comandos?
+matrix(vec.A, 2,5)
+matrix(vec.A, 2,5, byrow = T)
+```
+```{r ex, echo = FALSE}
+question_text("Explique",
+          answer(NULL, correct = TRUE),
+  allow_retry = FALSE,
+  try_again_button = "Refazer resposta",
+  incorrect = "Ok"
+)
+```
+
+Veja o que acontece quando usamos essa mesma função para uma matriz já existente...
+```{r h, exercise = TRUE, exercise.eval = FALSE}
+matriz.x<-matrix( 1:10, 2,5)
+diag(matriz.x) 
+```
+
+Observe os seguintes casos - verifique as dimensões.
+
+**Caso 1**
+```{r i, exercise = TRUE, exercise.eval = FALSE}
+(a <- matrix(1,nrow=2,ncol=2))
+(b <- matrix(3,nrow=3,ncol=3))
+
+a%*%b
+``` 
+**Caso 2**
+```{r j, exercise = TRUE, exercise.eval = FALSE}
+(a <- matrix(1,nrow=2,ncol=3))
+(b <- matrix(3,nrow=3,ncol=2))
+
+a%*%b
+``` 
+*O que acontece com os casos 1 e 2? O que você pode fazer para resolver? *
+
+## `apply()`
+
+Vamos ver como a função `apply` funciona. Responda: *qual o máximo de cada linha e qual o máximo de cada coluna.* *Qual a soma de cada coluna e de cada linha?*
+```{r k, exercise = TRUE, exercise.eval = FALSE}
+(m<-matrix(sample(20,16),4,4))
+apply(m,1,max)
+
+apply(m,2,max)
+
+apply(m,1,sum)
+
+rowSums(m)
+
+apply(m,2,sum)
+
+colSums(m)
+```
+
+
+
+
+## Exercícios
+
+### Exercício 1. 
+
+Extraia a raiz quadrada de todos os elementos do vetor `vet.b`. *O que acontece?* Eleve todos os elementos do `vet.c` ao quadrado. Forneça os códigos e comentários.
+
+```{r ex1, exercise = TRUE ,  exercise.reveal_solution = FALSE}
+    
+```
+
+```{r ex1-solution, exercise.reveal_solution = FALSE}
+vet.b <- seq(-1,1, len=20)
+(vet.4 <- sqrt(vet.b))
+
+vet.c<- 20:1
+(vet.c)^2
+```
+
+### Exercício 2.
+
+A partir do vetor criado `vet.b`, crie uma matriz `4x4`.
+
+```{r ex2, exercise = TRUE ,  exercise.reveal_solution = FALSE}
+    
+```
+
+```{r ex2-solution, exercise.reveal_solution = FALSE}
+(mat.2<-matrix(vet.b, ncol=4, nrow=4))
+```
+
+
+### Exercício 3. 
+
+Utilizando o comando `rbind()`, crie uma matriz `2x3` onde a primeira linha tem números de 1 a 3 e a segunda linha com números de 10 a 12.
+```{r ex3, exercise = TRUE ,  exercise.reveal_solution = FALSE}
+    
+```
+
+```{r ex3-solution, exercise.reveal_solution = FALSE}
+l1 <- 1:3
+l2 <- 10:12
+mat.3 <-rbind(l1,l2)
+mat.3
+```
+
+### Exercício 4. 
+
+Utilizando o comando `cbind`, crie uma matriz `3x2` onde a primeira coluna tem números de 1 a 3 e a segunda coluna com números de 10 a 12.
+
+```{r ex4, exercise = TRUE ,  exercise.reveal_solution = FALSE}
+    
+```
+
+```{r ex4-solution, exercise.reveal_solution = FALSE}
+c1 <- 1:3
+c2 <- 10:12
+mat.4 <- cbind(c1,c2)
+mat.4
+```
+
+### Exercício 5. 
+
+Crie um vetor com o nome de 5 amigos e um outro vetor com suas idades. Aplique, ao vetor com as idades, os nomes dos seus amigos.
+
+```{r ex5, exercise = TRUE ,  exercise.reveal_solution = FALSE}
+    
+```
+
+
+```{r ex5-hint-1}
+(idade <- c(43,46,45,42,38))
+(nomes <- c("Ale", "Duda", "Leo", "Paula", "Vanessa"))
+names(idade)<- nomes
+idade
+```
+
+### Exercício 6. 
+
+Utilize os comandos do $R$ para gerar um vetor contendo todos os inteiros de 1 até 100; depois crie vetores deste criado com elementos que não são múltiplos de 2; de 3; e de 7. São quatro vetores. Utilize o conhecimento adiquirido no lab anterior também. Apresente os comandos. 
+```{r ex6, exercise = TRUE ,  exercise.reveal_solution = FALSE}
+    
+```
+
+```{r ex6-solution, exercise.reveal_solution = FALSE}
+(vetor<-1:100)
+(vet2 <- which(vetor%%2!=0))
+(vet3 <- which(vetor%%3!=0))
+(vet7 <- which(vetor%%7!=0))
+```
+
+```{r ex6-hint-1}
+which(vetor%%7!=0)
+```
+
+### Exercício 7. 
+
+Considere o comando "`a<-sample(1000,100)`". Escreva um comando que retorne o número de elementos de `a` que não são múltiplos de 4.
+```{r ex7, exercise = TRUE ,  exercise.reveal_solution = FALSE}
+    
+```
+
+```{r ex7-solution, exercise.reveal_solution = FALSE}
+a<-sample(1000,100)
+length(which(a%%4!=0))
+```
+
+
+### Exercício 8. 
+
+Escreva comandos para construir as matrizes abaixo. Crie as mesmas matrizes de duas formas diferentes, cada uma:
+```{r, echo=FALSE}
+A <- matrix(1,3,3)
+B <- diag(-1,3)
+(matrizfinal <- A+B) #A
+```
+```{r, echo=FALSE}
+matrix(2^(1:9),3,3,byrow=TRUE) #B
+```
+```{r ex8, exercise = TRUE ,  exercise.reveal_solution = FALSE}
+
+```
+
+```{r ex8-solution, exercise.reveal_solution = FALSE}
+A <- matrix(1,3,3)
+B <- diag(-1,3)
+(matrizfinal <- A+B) #A  
+matrix(2^(1:9),3,3,byrow=TRUE) #B
+```
+
+```{r ex8-hint-1}
+matrix()
+```
+
+### Exercício 9. 
+Considerando o vetor `P<-1:100`, calcule a média de `P` e calcule a média de todos os elementos pares de `P`. Em seguida, calcule a média destas duas médias. Forneça os códigos. 
+```{r ex9, exercise = TRUE ,  exercise.reveal_solution = FALSE}
+    
+```
+
+```{r ex9-hint-1}
+mean()
+```
+
+```{r ex9-hint-2}
+which(P%%2==0)
+```
+
+```{r ex9-solution, exercise.reveal_solution = FALSE}
+P<-1:100
+P.par<-which(P%%2==0)
+mean(P.par)
+mean(c(mean(P),mean(P.par)))
+```
+
+
+### Exercício 10.
+Considere o vetor `V <- sample(20,40,replace=TRUE)`. Forneça os códigos que determine a soma e o produtório dos elementos de `V` excluindo os elementos repetidos de `V`.
+
+```{r ex10, exercise = TRUE }
+    
+```
+
+```{r ex10-hint-1}
+sum()
+```
+
+```{r ex10-hint-2}
+prod()
+```
+
+```{r ex10-hint-3}
+unique()
+```
+
+
+```{r ex10-solution,exercise.reveal_solution = FALSE}
+V<-sample(20,40,replace=TRUE)
+sum(unique(V)) 
+prod(unique(V))
+```
