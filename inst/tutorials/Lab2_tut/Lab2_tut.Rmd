@@ -9,9 +9,9 @@ runtime: shiny_prerendered
 description: >
   Lab 2
 ---
+
 ```{r setup, include=FALSE}
 library(learnr)
-
 knitr::opts_chunk$set(echo = TRUE)
 tutorial_options(exercise.eval = FALSE)
 ```

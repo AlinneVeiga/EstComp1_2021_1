@@ -12,14 +12,14 @@ description: >
 
 ```{r setup, include=FALSE}
 library(learnr)
+knitr::opts_chunk$set(echo = TRUE)
+tutorial_options(exercise.eval = FALSE)
+
+
 
 d <- data.frame(candidatos=1:1000,n1=sample(0:10,1000,replace=TRUE),
               n2= sample(0:10,1000,replace=TRUE))
-
-knitr::opts_chunk$set(echo = TRUE)
-tutorial_options(exercise.eval = FALSE)
 ```
-
 
 ## Data Frames 
 
