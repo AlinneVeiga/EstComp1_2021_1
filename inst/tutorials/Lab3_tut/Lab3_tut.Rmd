@@ -12,13 +12,12 @@ description: >
 
 ```{r setup, include=FALSE}
 library(learnr)
-knitr::opts_chunk$set(echo = T)
-knitr::opts_chunk$set(echo = TRUE, eval=FALSE)
-tutorial_options(exercise.eval = FALSE)
 
 d <- data.frame(candidatos=1:1000,n1=sample(0:10,1000,replace=TRUE),
               n2= sample(0:10,1000,replace=TRUE))
 
+knitr::opts_chunk$set(echo = TRUE)
+tutorial_options(exercise.eval = FALSE)
 ```
 
 
@@ -128,7 +127,7 @@ str(d)
 
 ```
 
-```{r ex12-hint-1}
+```{r ex12-hint-1, eval=F}
 (2 + 2)/2
 ```
 
@@ -141,7 +140,7 @@ d$m.n1.n2<-(d$n1+d$n2)/2
     
 ```
 
-```{r ex13-hint-1}
+```{r ex13-hint-1, eval=F}
 mean()
 ```
 
@@ -155,7 +154,7 @@ mean(d$n2)
     
 ```
 
-```{r ex14-hint-1}
+```{r ex14-hint-1, eval=F}
 print()
 ```
 
@@ -168,7 +167,7 @@ print(d$candidatos[which(d$m.n1.n2<5)])
     
 ```
 
-```{r ex15-hint-1}
+```{r ex15-hint-1, eval=F}
 length()
 ```
 
@@ -184,7 +183,7 @@ Crie uma lista que contenha: seu nome todo, sexo, idade, seus três filmes prefe
     
 ```
 
-```{r ex2-hint-1}
+```{r ex2-hint-1, eval=F}
 list()
 ```
 
@@ -201,7 +200,7 @@ Construa uma lista que tenha uma matriz `2 x 2` e um vetor de 10 componentes (va
     
 ```
 
-```{r ex3-hint-1}
+```{r ex3-hint-1, eval=F}
 list()
 ```
 
@@ -218,10 +217,10 @@ Construa uma matriz `M` cujas colunas sejam formadas pelos elementos desta lista
     
 ```
 
-```{r ex4-hint-1}
+```{r ex4-hint-1, eval=F}
 unlist()
 ```
-```{r ex4-hint-2}
+```{r ex4-hint-2, eval=F}
 matrix()
 ```
 
