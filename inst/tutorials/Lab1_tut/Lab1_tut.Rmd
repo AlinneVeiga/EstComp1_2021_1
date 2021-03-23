@@ -294,7 +294,7 @@ x <- 1:15
 which(x%%2 != 0)
 ```
    
-```{r ex6-hint}
+```{r ex6-hint, eval=FALSE}
 which()
 
 4%%2
@@ -340,15 +340,15 @@ r.j <- r^n
 sum(r.j)
 ```
 
-```{r ex9-hint-1}
+```{r ex9-hint-1, eval=FALSE}
 c(1:5)
 ```
 
-```{r ex9-hint-2}
+```{r ex9-hint-2, eval=FALSE}
 a^b
 ```
 
-```{r ex9-hint-3}
+```{r ex9-hint-3, eval=FALSE}
 sum()
 ```
 
