@@ -15,6 +15,11 @@ library(learnr)
 
 knitr::opts_chunk$set(echo = TRUE)
 tutorial_options(exercise.eval = FALSE)
+
+#Cria um vetor vazio
+e <- numeric()
+#Aumentamos o vetor
+e <- e[1:10]
 ```
 
 
