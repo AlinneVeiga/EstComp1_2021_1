@@ -44,7 +44,7 @@ vet.e
 
 Execute o comando abaixo múltiplas vezes...
 ```{r b, exercise = TRUE, exercise.eval = FALSE}
-e[sample(1:10,3,replace=T)] <- sample(1:10,3,replace=T);e
+vet.e[sample(1:10,3,replace=T)] <- sample(1:10,3,replace=T);vet.e
 ```
 ## Indexando Matrizes
 
