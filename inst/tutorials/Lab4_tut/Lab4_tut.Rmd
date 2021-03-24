@@ -1,0 +1,386 @@
+---
+title: "Tutorial - Lab4"
+output: 
+  learnr::tutorial:
+    allow_skip: true
+    progressive: false
+    highlight: tango
+runtime: shiny_prerendered
+description: >
+  Lab 4
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+
+knitr::opts_chunk$set(echo = TRUE)
+tutorial_options(exercise.eval = FALSE)
+```
+
+
+## Indexando Vetores
+
+Podemos também modificar vetores utilizando a indexação. 
+```{r}
+#Cria um vetor vazio
+e <- numeric()
+#Aumentamos o vetor
+e <- e[1:10]
+str(e)
+```
+
+Dê valores para os elementos 3, 5 e 9 e verifique o vetor `e`:
+```{r a, exercise = TRUE, exercise.eval = FALSE}
+e[3] <- 15
+e[5] <- 10
+e[9] <- 22
+e 
+```
+
+Execute o comando abaixo múltiplas vezes...
+```{r b, exercise = TRUE, exercise.eval = FALSE}
+e[sample(1:10,3,replace=T)] <- sample(1:10,3,replace=T);e
+```
+## Indexando Matrizes
+
+Observe a criação das seguintes matrizes:
+```{r}
+#Criando uma matriz
+(x <- matrix(1:20,4,5))
+(i <- matrix(c(1:3, 3:1),3,2))
+```
+
+Dê $0$ aos elementos formados pelas linhas de `i`:
+```{r v, exercise = TRUE, exercise.eval = FALSE}
+x[i] <- 0
+x
+```
+
+Verifique que os elementos que receberam valor `0` foram: $x_{13}$, $x_{22}$ $x_{31}$. 
+
+
+```{r q1, echo = FALSE}
+question_text("Entendeu? Explique",
+          answer(NULL, correct = TRUE),
+  allow_retry = FALSE,
+  try_again_button = "Refazer resposta",
+  incorrect = "Ok"
+)
+```
+
+## `seq`
+
+Explique:
+```{r}
+#a
+seq(2,10)
+#b
+seq(2.1,8)
+#c
+seq(2.1,8.1)
+```
+
+```{r q2, echo = FALSE}
+question("Quantos argumentos foram dados",
+         answer("1"),
+         answer("2", correct = TRUE),
+         answer("3"))
+```
+
+```{r q3, echo = FALSE}
+question("Qual o incremento assumido ",
+         answer("1", correct = TRUE),
+         answer("2"),
+         answer("3"))
+```
+
+
+```{r q4, echo = FALSE}
+question("Qual o segundo argumento?",
+         answer("to", correct = TRUE),
+         answer("by"),
+         answer("length"))
+```
+ 
+```{r q5, echo = FALSE}
+question("o que está errado no seguinte comando:",
+         answer("A ordem dos argumentos"),
+         answer("O sinal do terceiro argumento", correct = TRUE),
+         answer("O tamanho do vetor"))
+```
+ 
+```{r, eval=FALSE}
+seq(30,20,1)
+```
+
+## `rep`
+
+Escolha os comandos que gerem as seguintes sequências:
+
+**a**
+```{r, echo=FALSE}
+rep(seq(1,19, 2), 2)
+```
+```{r rrep1, exercise = TRUE, exercise.eval = FALSE}
+
+```
+```{r rep1, echo = FALSE}
+question("O comando é:",
+         answer("`rep(seq(1,19, 2), 1)`"),
+         answer("`rep(seq(1,19, 2), 2)`", correct = TRUE),
+         answer("`rep(seq(1,19, 1), 2)`"))
+```
+
+
+
+**b**
+```{r, echo=FALSE}
+rep(seq(1,19, 2), rep(3,10))
+```
+```{r rrep2, exercise = TRUE, exercise.eval = FALSE}
+
+```
+```{r rep2, echo = FALSE}
+question("O comando é:",
+         answer("`rep(seq(1,19, 2), 1)`"),
+         answer("`rep(seq(1,19, 2), 2)`", correct = TRUE),
+         answer("`rep(seq(1,19, 1), 2)`"))
+```
+
+
+
+**c**
+```{r, echo=FALSE}
+rep(seq(1,19, 2), seq(10,1,-1))
+```
+```{r rrep3, exercise = TRUE, exercise.eval = FALSE}
+
+```
+```{r rep3, echo = FALSE}
+question("O comando é:",
+         answer("`rep(seq(1,19, 2), seq(10,1,-2))`"),
+         answer("`rep(seq(1,19, 2), seq(10,2,-1))`"),
+         answer("`rep(seq(1,19, 2), seq(10,1,-1))`", correct = TRUE))
+```
+
+
+
+**d**
+```{r, echo=FALSE}
+rep(seq(1,19, 2), 1:10)
+```
+```{r rrep4, exercise = TRUE, exercise.eval = FALSE}
+
+```
+```{r rep4, echo = FALSE}
+question("O comando é:",
+         answer("`rep(seq(1,10, 2), 1:19)`"),
+         answer("`rep(seq(1,19, 2), 1:10)`", correct = TRUE),
+         answer("`rep(seq(1,19, 2), 1)`"))
+```
+
+
+
+**e**
+```{r, echo=FALSE}
+rep(factor(LETTERS[1:4]),seq(1,4,1))
+```
+```{r rrep5, exercise = TRUE, exercise.eval = FALSE}
+
+```
+```{r rep5, echo = FALSE}
+question("O comando é:",
+         answer("`rep(factor(LETTERS[1:4]),seq(1,4,4))`"),
+         answer("`rep(factor(LETTERS[1:3]),seq(1,3,1))`"),
+         answer("`rep(factor(LETTERS[1:4]),seq(1,4,1))`", correct = TRUE))
+```
+
+
+
+**f**
+```{r, echo=FALSE}
+rep(factor(letters[15:6]),seq(20,1,-2))
+```
+```{r rrep6, exercise = TRUE, exercise.eval = FALSE}
+
+```
+```{r rep6, echo = FALSE}
+question("O comando é:",
+         answer("`rep(factor(letters[15:6]),seq(20,1,-2))`", correct = TRUE),
+         answer("`rep(factor(letters[15:6]),seq(20,1,-1))`"),
+         answer("`rep(factor(letters[15:6]),seq(20,2,-2))`"))
+```
+
+**g**
+```{r, echo=FALSE}
+rep(1:5, 5)
+```
+```{r rrep7, exercise = TRUE, exercise.eval = FALSE}
+
+```
+```{r rep7, echo = FALSE}
+question("O comando é:",
+         answer("`rep(1:4, 5)`"),
+         answer("`rep(1:5, 5)`", correct = TRUE),
+         answer("`rep(1:6, 5)`"))
+```
+
+
+**h**
+```{r, echo=FALSE}
+rep(0:4, each=5)
+```
+```{r rrep8, exercise = TRUE, exercise.eval = FALSE}
+
+```
+```{r rep8, echo = FALSE}
+question("O comando é:",
+         answer("`rep(0:5, each=4)`"),
+         answer("`rep(0:4, each=4)`"),
+         answer("`rep(0:4, each=5)`", correct = TRUE))
+```
+
+
+
+**i**
+```{r, echo=FALSE}
+rep(0:4,5)+rep(c(1:5),each=5)
+```
+```{r rrep9, exercise = TRUE, exercise.eval = FALSE}
+
+```
+```{r rep9, echo = FALSE}
+question("O comando é:",
+         answer("`rep(0:4,4)+rep(c(1:4),each=5)"),
+         answer("`rep(0:4,5)+rep(c(1:5),each=5)`", correct = TRUE),
+         answer("`rep(0:4,5)+rep(c(1:5),each=4)`"))
+```
+
+
+
+**j**
+```{r, echo=FALSE}
+rep(1:5, 1:5)
+```
+```{r rrep10, exercise = TRUE, exercise.eval = FALSE}
+
+```
+```{r rep10, echo = FALSE}
+question("O comando é:",
+         answer("`rep(1:5, 1:5)`", correct = TRUE),
+         answer("`rep(1:4, 1:4)`"),
+         answer("`rep(5:1, 5:1)`"))
+```
+
+## Exercícios   
+
+### Exercício 1  
+Considere as matrizes `A1`:
+```{r, echo=F}
+(A1 <- matrix(1:16, 4, 4, byrow=F))
+```
+e `A2`:
+```{r, echo=F}
+(A2 <- matrix(1:16, 4, 4, byrow=T))
+```
+
+1. Extraia a submatriz composta da terceira e quarta linhas da matriz transposta de `A1` unida com a transposta da segunda coluna da matriz resultante da multiplicação de `A1` e `A2`. Forneça **UMA LINHA** de código para chegar na seguinte matriz:
+
+```{r ex1, exercise = TRUE}
+    
+```
+
+```{r ex1-hint-1, eval=F}
+t()
+```
+
+```{r ex1-solution}
+rbind(t(A1)[3:4,],t(A1%*%A2[,2]))
+```
+
+2. Repita o exercício anterior, utilizando índices negativos e chegue na mesma matriz
+
+```{r ex2, exercise = TRUE}
+    
+```
+
+```{r ex2-hint-1, eval=F}
+c(-1,-2)
+```
+
+```{r ex2-solution}
+rbind(t(A1)[c(-1,-2),],t(A1%*%A2[,c(-1,-3,-4)]))
+```
+
+### Exercício 2
+
+Verifique a diferença entre as sequências:
+```{r, echo=FALSE}
+seq(-1,1,0.2)
+seq(1,-1,-0.2)
+```
+Escreva os códigos para gerar as sequências acima:
+
+```{r ex3, exercise = TRUE}
+    
+```
+
+```{r ex3-hint-1, eval=F}
+seq()
+```
+
+```{r ex3-solution}
+seq(-1,1,0.2)
+seq(1,-1,-0.2)
+```
+
+
+### Exercício 3
+Construa a matriz `mm.a` (dê esse nome a ela) abaixo:    
+```{r, echo=FALSE}
+mm.a <- matrix(c(0.2,0.3,0.8,0.7), ncol=2)
+rownames(mm.a) <- c("Sol","Chuva")
+colnames(mm.a) <-c("Sol","Chuva")
+mm.a
+```
+**Usando indexação**, modifique a matriz para (escreva os comandos necessários para tal):
+```{r, echo=FALSE}
+mm.a[2,1] <- 0
+mm.a[1,2] <- 1
+mm.a[1,1] <- mm.a[1,1]*2
+mm.a[2,2] <- mm.a[2,2]*2
+mm.a
+```
+
+```{r ex4, exercise = TRUE}
+    
+```
+
+```{r ex4-hint-1, eval=F}
+list()
+```
+
+```{r ex4-solution}
+mm.a <- matrix(c(0.2,0.3,0.8,0.7), ncol=2)
+rownames(mm.a) <- c("Sol","Chuva")
+colnames(mm.a) <-c("Sol","Chuva")
+mm.a
+mm.a[2,1] <- 0
+mm.a[1,2] <- 1
+mm.a[1,1] <- mm.a[1,1]*2
+mm.a[2,2] <- mm.a[2,2]*2
+mm.a
+```
+
+
+### Exercício 5
+
+Verifique ao que se equivale o próximo comando:
+```{r, eval=FALSE}
+y <- -10:10
+y[y < 0] <- -y[ y< 0]
+```
+```{r ex5, exercise = TRUE}
+    
+```
+
