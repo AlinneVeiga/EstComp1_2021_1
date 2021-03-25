@@ -1,0 +1,262 @@
+---
+title: "Tutorial - Lab6"
+output: 
+  learnr::tutorial:
+    allow_skip: true
+    progressive: false
+    highlight: tango
+runtime: shiny_prerendered
+description: >
+  Lab 6
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+
+knitr::opts_chunk$set(echo = TRUE)
+tutorial_options(exercise.eval = FALSE)
+```
+
+## Funções
+
+Compare as funções abaixo - execute os códigos:
+
+```{r a, exercise = TRUE, exercise.eval=FALSE}
+f.2a <- function(x, y) {
+ z1 <- 2*x + y
+ z2 <- x + 2*y
+ z3 <- 2*x + 2*y
+ z4 <- x/y
+}
+f.2a(2,5)
+```
+
+```{r b, exercise = TRUE, exercise.eval=FALSE}
+f.2b<- function(x, y) {
+ z1 <- 2*x + y
+ z2 <- x + 2*y
+ z3 <- 2*x + 2*y
+  x/y
+}
+f.2b(2,5)
+```
+
+```{r c, exercise = TRUE, exercise.eval=FALSE}
+f.2c<- function(x, y) {
+ z1 <- 2*x + y
+ z2 <- x + 2*y
+ z3 <- 2*x + 2*y
+ z4 <- x/y
+return(c(z1, z2, z3, z4))
+}
+f.2c(2,5)
+```
+
+```{r q1, echo = FALSE}
+question("Não há saída para a função `f.2a`. Por quê?",
+         answer("Há algo errado nos códigos"),
+         answer("Todas as expressões criaram variáveis locais e não houve comando de `print()` ou `return()`.", correct = TRUE),
+         answer("Não entendi!"))
+```
+
+```{r q2, echo = FALSE}
+question("Para a função `f.2b` temos quais resultados?",
+         answer("Apenas o resultado da expressão `x/y`", correct = TRUE),
+         answer("Os resultados para `z1, z2, z3, z4`."),
+         answer("Não entendi!"))
+```
+
+
+```{r q3, echo = FALSE}
+question("Para a função `f.2c` temos quais resultados?",
+         answer("o uso do comando `return(c(z1, z2, z3, z4))` fez com que todos as variáveis locais criadas tivessem resultados mostrados", correct = TRUE),
+         answer("Devia ter usado `print()`."),
+         answer("Não entendi!"))
+```
+
+## Funções + loopings
+
+Compare as funções abaixo - execute os códigos:
+
+```{r d, exercise = TRUE, exercise.eval=FALSE}
+f6.a <- function(x) {
+	 i <- 0 
+  while(i < x) {
+   i <- i+1
+   y <- i*2
+   print(y)
+  }
+}	
+f6.a(4)
+
+```
+
+```{r e, exercise = TRUE, exercise.eval=FALSE}
+f6.b <- function(x) {
+	 i <- 0 
+  while(i < x) {
+   i <- i+1
+   y <- i*2
+  }
+return(y)
+}	
+f6.b(4)
+```
+
+```{r f, exercise = TRUE, exercise.eval=FALSE}
+f6.c <- function(x) {
+	 i <- 0 
+	 y <- NULL
+  while(i < x) {
+   i <- i+1
+   y[i] <- i*2
+  }
+ return(y)
+}	
+f6.c(4)
+```
+```{r qt1, echo = FALSE}
+question_text("Explique a diferença entre as `f6.`s",
+          answer(NULL, correct = TRUE),
+  allow_retry = FALSE,
+  try_again_button = "Refazer resposta",
+  incorrect = "Ok"
+)
+```
+
+
+
+## Exercícios   
+
+### Exercício 1  
+
+Explique o que a função faz (tente entender antes de executar os comandos):
+```{r, eval=F}
+f <- function(x) {
+  if (x < 10) {
+    0
+  } else {
+    10
+  }
+}
+f(5)
+f(15)
+```
+
+```{r ex1, exercise = TRUE}
+
+```
+
+```{r qt1a, echo = FALSE}
+question_text("Explique quais os possíveis resultados da função:",
+          answer(NULL, correct = TRUE),
+  allow_retry = FALSE,
+  try_again_button = "Refazer resposta",
+  incorrect = "Ok"
+)
+```
+
+
+### Exercício 2
+
+O que a próxima função retorna (tente responder antes de executar os comandos):
+```{r, eval=F}
+ f2 <- function(x = z) {
+   z <- 100
+   x
+ }
+ f2()
+```
+```{r ex2, exercise = TRUE}
+
+```
+
+```{r qex22, echo = FALSE}
+question("O que retorna",
+         answer("Sempre, 100"),
+         answer("O valor em `()`, seja o valor 100 ou outro qualquer" , correct = TRUE),
+         answer("Não entendi!"))
+```
+
+### Exercício 3
+
+O retorno da próxima função é uma mensagem de erro? Explique(tente responder antes de executar os comandos).
+```{r, eval=FALSE}
+f2 <- function(a, b) {
+  a * 10
+}
+f2(10, stop("Erroooo!"))
+```
+
+```{r ex3, exercise = TRUE}
+
+```
+
+```{r qex3, echo = FALSE}
+question("Explique",
+         answer("Sim, é uma mensagem de erro."),
+         answer("Não, o retorno é apenas 100, pois nesse caso argumento `b` não influencia em nada" , correct = TRUE),
+         answer("Não entendi!"))
+```
+
+### Exercício 4
+
+ Qual o retorno da função (tente responder antes de executar os comandos):
+```{r, eval=FALSE}
+x <- 1
+f1 <- function(x) {
+  function() {
+    x + 10
+  }
+}
+f1(2)()
+```
+
+
+```{r ex4, exercise = TRUE}
+
+```
+
+```{r qex4, echo = FALSE}
+question("A função retorna:",
+         answer("`x`"),
+         answer("12" , correct = TRUE),
+         answer("1"))
+```
+
+
+### Exercício 5
+
+Verifique a função abaixo. Há um erro. Identifique o erro e sugira uma alternativa. 
+
+```{r, eval=FALSE}
+rm(list=ls())
+soma.aleat <- function(n) {
+x <- rep(100, 10)
+x[1:n] <- sample(n, replace=T) 
+cat("x:", x[1:n], "\n")
+return(sum(x))
+}
+soma.aleat(10)
+soma.aleat(5)
+soma.aleat(1)
+```
+
+
+```{r ex5, exercise = TRUE}
+
+```
+
+```{r ex5-solution}
+rm(list=ls())
+soma.aleat <- function(n) {
+x <- NULL
+x[1:n] <- sample(n, replace=T) 
+cat("x:", x[1:n], "\n")
+return(sum(x))
+}
+soma.aleat(10)
+soma.aleat(5)
+soma.aleat(1)
+```
+
