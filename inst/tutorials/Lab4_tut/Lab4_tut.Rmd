@@ -147,9 +147,9 @@ rep(seq(1,19, 2), rep(3,10))
 ```
 ```{r rep2, echo = FALSE}
 question("O comando é:",
-         answer("`rep(seq(1,19, 2), 1)`"),
-         answer("`rep(seq(1,19, 2), 2)`", correct = TRUE),
-         answer("`rep(seq(1,19, 1), 2)`"))
+         answer("`rep(seq(1,19, 2), rep(2,10))`"),
+         answer("`rep(seq(1,19, 2), rep(3,10))`", correct = TRUE),
+         answer("`rep(seq(1,19, 2), rep(1:3,10))`"))
 ```
 
 
@@ -256,7 +256,7 @@ rep(0:4,5)+rep(c(1:5),each=5)
 ```
 ```{r rep9, echo = FALSE}
 question("O comando é:",
-         answer("`rep(0:4,4)+rep(c(1:4),each=5)"),
+         answer("`rep(0:4,4)+rep(c(1:4),each=5)`"),
          answer("`rep(0:4,5)+rep(c(1:5),each=5)`", correct = TRUE),
          answer("`rep(0:4,5)+rep(c(1:5),each=4)`"))
 ```
