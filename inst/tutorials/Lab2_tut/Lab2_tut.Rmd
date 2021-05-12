@@ -50,7 +50,7 @@ vet.b>vet.e
 ```
  
 ```{r d, echo = FALSE}
-question("`vet.b` e  `vet.d` têm o mesmo tamanho?",
+question("`vet.b` e  `vet.e` têm o mesmo tamanho?",
          answer("Sim."),
          answer("Não.", correct = TRUE))
 ```
